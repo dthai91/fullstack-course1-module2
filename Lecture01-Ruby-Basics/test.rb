@@ -1,1 +1,1 @@
-p 'magic git'
+p 'magic git skipping staging area'
