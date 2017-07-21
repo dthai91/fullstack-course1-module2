@@ -1,1 +1,1 @@
-p 'test test2'
+p 'magic git'
