@@ -1,1 +1,1 @@
-p 'magic git skipping staging area'
+p 'git commit -am "skippng stagging"'
