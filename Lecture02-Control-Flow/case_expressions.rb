@@ -12,8 +12,8 @@ end
 
 name = 'Fisher' 
 case name # 2nd FLAVOR
-  when /fish/i then puts "Something is fishy here"
-  when 'Smith' then puts "Your name is Smith"
+  when /fisk/i then puts "Something is fishy here"
+  when 'Fisher' then puts "Your name is Smith"
 end
 
 #=> Something is fishy here
