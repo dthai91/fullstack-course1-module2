@@ -1,0 +1,5 @@
+str = "4,1,8"
+str = str.split(',').map{|num| num.to_i}
+p str.max-str.min
+
+

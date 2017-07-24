@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # p blasphemous_characters = ["Robb", "Sansa", "Arya", "Bran", "Rickon"]
 # p blasphemous_characters[0] = "Rick"
 # p blasphemous_characters #=> ["Rick", "Sansa", "Arya", "Bran", "Rickon"]
@@ -17,3 +18,12 @@
     puts "Who's talking about yield?"
     puts "That topic's for a later date!"
   end
+=======
+u = " unity "
+i = "in the "
+k = "kangaroo community"
+# "1 unity in the kangaroo community"
+p 1.to_s + u + i + k
+p 1.to_s + " unity " << i << k
+p 1.to_s + " " + k[-5..-1] + " " + i + k
+>>>>>>> a9a1509e432ca4ff7228e9a239518917c1ba9b93
