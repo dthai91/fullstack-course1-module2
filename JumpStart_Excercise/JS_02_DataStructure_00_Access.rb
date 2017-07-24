@@ -1,3 +1,4 @@
+#METHODS EXCERCISES
 # Reverse Digits
 
 # Define a method, #reverse_digits(int), that reverses the digits of its argument
@@ -59,9 +60,9 @@ def how_many_likes?(sentence)
 end
 
 puts "-------How Many Likes?-------"
-puts how_many_likes?("this sentence is just fine") == 0
-puts how_many_likes?("i really like ruby") == 1
-puts how_many_likes?("i like really like how ruby works") == 2
+puts how_many_likes?("this sentence is just fine")# == 0
+puts how_many_likes?("i really like ruby")# == 1
+puts how_many_likes?("i like really like how ruby works")# == 2
 puts how_many_likes?("this is like totally like too many like words") == 3
 
 # ------------------------------------------------------------------------------
@@ -79,7 +80,13 @@ def pair_product?(arr, target_product)
 end
 
 puts "-------Pair Product?-------"
-puts pair_product?([2, 3, 4], 6) == true
-puts pair_product?([2, 3, 4], 10) == false
-puts pair_product?([1, 6, 7, 8], 1) == false
-puts pair_product?([2, 8, 6, 2], 4) == true
+puts pair_product?([2, 3, 4], 6)# == true
+puts pair_product?([2, 3, 4], 10)# == false
+puts pair_product?([1, 6, 7, 8], 1)# == false
+puts pair_product?([2, 8, 6, 2], 4)# == true
+
+arr = [2,3,4]
+target = 20
+p 'result:', arr.combination(2).map {|com2| com2.reduce(:*)}.include?(target)
+p arr.reduce(:*)
+p (5..10).reduce(2,:*)

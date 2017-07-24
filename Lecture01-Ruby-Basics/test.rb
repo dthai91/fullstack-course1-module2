@@ -1,8 +1,7 @@
-p blasphemous_characters = ["Robb", "Sansa", "Arya", "Bran", "Rickon"]
-p blasphemous_characters[0] = "Rick"
-p blasphemous_characters #=> ["Rick", "Sansa", "Arya", "Bran", "Rickon"]
-
-p blasphemous_characters[3..-1]# = "Morty", "Snuffles" # this is called multiple assignment
-#p blasphemous_characters #=> ["Rick", "Sansa", "Arya", "Morty", "Snuffles"]
-
-p (-5..-1).to_a.min
+u = " unity "
+i = "in the "
+k = "kangaroo community"
+# "1 unity in the kangaroo community"
+p 1.to_s + u + i + k
+p 1.to_s + " unity " << i << k
+p 1.to_s + " " + k[-5..-1] + " " + i + k
