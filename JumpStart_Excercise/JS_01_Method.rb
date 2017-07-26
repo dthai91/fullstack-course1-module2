@@ -1,3 +1,5 @@
+# EASY
+
 # Write a method that returns its argument converted to a string.
 def my_to_s(arg)
   # your code goes here
@@ -41,11 +43,13 @@ end
 # If the argument is negative, the method simply returns the argument.
 # (negative(-1) => -1, negative(1) => -1, negative(0) => 0)
 # HINT: use the abs method
-def negative(num1)
+def negative(num)
   # your code goes here
-  p (num1 * (-1)) if num1>0
-  p (num1)
+    p (num * (-1)) if num>0
+  p (num)
 end
+
+
 # MEDIUM
 
 # Write a method that returns the last digit of its argument.
@@ -54,6 +58,7 @@ end
 def last_digit(int)
   # your code goes here
   int.modulo(10)
+
 end
 
 # Write a method that returns a boolean indicating whether 
@@ -105,7 +110,17 @@ def dec_remainder_of_two_integers(i_dividend, i_divisor)
 end
 
 
-# TESTING SUITE BELOW: DO NOT MODIFY
+# EXPERT
+
+# Write a method that returns the integer remainder of its two arguments. 
+# (i.e., what using the modulo operator would return).
+# You may not use the modulo operator.
+# Assume the arguments are integers.
+# HINT: Use dec_remainder_of_two_integers as a helper method
+def int_remainder_without_modulo(i_dividend, i_divisor)
+  # your code goes here
+  (dec_remainder_of_two_integers(i_dividend,i_divisor)*i_divisor).to_i
+end
 
 $success_count = 0
 $failure_count = 0
@@ -227,6 +242,9 @@ test_dec_remainder_of_two_floats(10.0, 4.0, 0.5)
 puts "\ndec_remainder_of_two_integers:\n" + "*" * 15 + "\n"
 test_dec_remainder_of_two_integers(8, 5, 0.6)
 test_dec_remainder_of_two_integers(10, 4, 0.5)
+puts "\nint_remainder_without_modulo:\n" + "*" * 15 + "\n"
+test_int_remainder_without_modulo(8, 5, 3)
+test_int_remainder_without_modulo(10, 4, 2)
 puts 
 puts "TOTAL CORRECT: #{$success_count} / #{$success_count + $failure_count}"
 puts "TOTAL FAILURES: #{$failure_count}"

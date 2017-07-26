@@ -1,54 +1,58 @@
-#JS Challenge 1
-
-
-# A "slippery number" has 3 as a factor or has 5 as a factor, but not both. 6 is a slippery, but 30 is not. Define a method that returns a boolean indicating whether its argument is slippery.
-def is_slippery?(n)
-	(n.modulo(3) == 0 || n.modulo(5)==0) && (n.modulo(15)!=0)
+# Define a method that reverses the digits of its argument and returns the resulting number.
+# reverse_digits(1738) => 8371
+def reverse_digits(int)
+#   1 line code with .reverse
+#	int.to_s.reverse.to_i
+	i = -1
+	new_num = ''
+	while i >= -int.to_s.length
+		new_num << int.to_s[i]
+		i -= 1
+	end
+	return new_num.to_i
 end
 
-# Write a method that, given an integer n, returns an array of the first n slippery numbers.
-# slippery_numbers(7) => [3, 5, 6, 9, 10, 12, 18]
-def slippery_numbers(n)
-	lst = []
-	i = 1
-	while lst.length < n
-		lst << i if is_slippery?(i)
-		i = i + 1
+# Define a method, #pair_product?, that accepts two arguments: 
+# an array of integers and a target_product (an integer). 
+# The method returns a boolean indicating 
+# whether any pair of elements in the array multiplied together equals that product. 
+# You cannot multiply an element by itself. An element on its own is not a product.
+
+# pair_product?([3, 1, 5], 15) => true
+
+def pair_product?(arr, target_product)
+# => 1 line with map reduce
+#	arr.combination(2).map{|pair| pair.reduce(:*)}.include?target_product
+	ls = []
+	i = 0
+	while i < arr.length
+		j = i + 1
+			while arr.length > j
+				ls << arr[i] * arr[j]
+				j += 1
+			end
+		i += 1
 	end
-	return lst
+	return ls.include?(target_product)
 end
 
-# Define a method, #e_words(str), that accepts a string as an argument. 
-#Your method return the number of words in the string that end with the letter "e".
-# e_words("tree") => 1
-# e_words("Let be be finale of seem.") => 3
-def e_words(str)
-	count = 0
-	str.delete('.').split.each do |word|
-		count += 1 if word[-1] =='e'
+# Define a method, #slice_between_vowels(word), that accepts a string as an argument. 
+# Your method should return the slice of the word between the first and last vowels of that word. 
+# Return an empty string if the word has less than 2 vowels.
+
+# slice_between_vowels("serendipity") => "rendip"
+# slice_between_vowels("train") => ""
+# slice_between_vowels("dog") => ""
+
+def slice_between_vowels(word)
+	vowels = ["a","e","i","o","u"]
+	word = word.split('')
+	ls = []
+	for i in (0..word.length)
+		ls << i if vowels.include?(word[i])
 	end
-	return count
-end
-
-# The Fibonacci Sequence follows a simple rule: 
-# the next number in the sequence is the sum of the previous two. 
-# The sequence begins with [0, 1]. One computes the third number by summing the first and  second (0 + 1 == 1)
-# ,yielding [0, 1, 1], one computes the fourth number by summing the second and the third, 
-# yielding [0, 1, 1, 2], and so on.
-# Define a method, #fibs, that accepts an integer as an argument. 
-# The method should return an array of the first n Fibonacci numbers.
-
-# fibs(1) => [0]
-# fibs(6) => [0, 1, 1, 2, 3, 5]
-
-def fibs(n)
-	ls = [0,1]
-	return [0] if n == 1
-	return [0,1] if n == 2
-	while ls.length < n
-		ls<< (ls[ls.length-2]+ls[ls.length-1])
-	end
-	return ls
+	return "" if 2 >= ls.length
+   	return word[(ls[0]+1)...ls[-1]].join
 end
 
 $success_count = 0
@@ -132,19 +136,15 @@ def print_test(method_name, args, expectation)
     puts e.backtrace.select {|t| !t.include?("method_missing") && !t.include?("print_test")}
     $failure_count += 1
 end
-
-puts "\nis_slippery?:\n" + "*" * 15 + "\n"
-test_is_slippery?(6, true)
-test_is_slippery?(30, false)
-puts "\nslipper_numbers:\n" + "*" * 15 + "\n"
-test_slippery_numbers(2, [3, 5])
-test_slippery_numbers(0, [])
-puts "\ne_words:\n" + "*" * 15 + "\n"
-test_e_words("loom", 0)
-test_e_words("To be or not to be", 2)
-puts "\nfibs:\n" + "*" * 15 + "\n"
-test_fibs(2, [0,1])
-test_fibs(6, [0,1,1,2,3,5])
+puts "\nreverse_digits:\n" + "*" * 15 + "\n"
+test_reverse_digits(1738, 8371)
+test_reverse_digits(0, 0)
+puts "\npair_product?:\n" + "*" * 15 + "\n"
+test_pair_product?([3,1,5], 15,  true)
+test_pair_product?([1,5,100], 25, false)
+puts "\nslice_between_vowels:\n" + "*" * 15 + "\n"
+test_slice_between_vowels("serendipity", "rendip")
+test_slice_between_vowels("le3t", "")
 puts
 puts "TOTAL CORRECT: #{$success_count} / #{$success_count + $failure_count}"
 puts "TOTAL FAILURES: #{$failure_count}"

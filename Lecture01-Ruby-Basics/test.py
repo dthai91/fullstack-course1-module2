@@ -27,14 +27,19 @@
 
 ### FILTER apply same funtion to filter out 
 
-numlist = [10,20,30,40,50]
-numlist2 = [x for x in numlist if x>25]
-print numlist2
-print [x for x in numlist if x>25]
-print filter(lambda x:x>25,numlist)
+# numlist = [10,20,30,40,50]
+# numlist2 = [x for x in numlist if x>25]
+# print numlist2
+# print [x for x in numlist if x>25]
+# print filter(lambda x:x>25,numlist)
 
 
 
 ### REDUCE: apply same function to items of an array,
 ### Then uses the result of f0 as param for f1
 ### Then return an item, not a list
+
+ 
+
+
+

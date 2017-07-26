@@ -1,55 +1,46 @@
-#JS Challenge 1
+# Define a method that returns a boolean indicating whether its argument is a palindrome.
+def palindrome?(str)
+#  return str.reverse == str
+  new_str = ''
+  i = -1
+  until i < -str.length
+    new_str << str[i]
+    i -= 1
+  end
+  return new_str == str
 
-
-# A "slippery number" has 3 as a factor or has 5 as a factor, but not both. 6 is a slippery, but 30 is not. Define a method that returns a boolean indicating whether its argument is slippery.
-def is_slippery?(n)
-	(n.modulo(3) == 0 || n.modulo(5)==0) && (n.modulo(15)!=0)
 end
 
-# Write a method that, given an integer n, returns an array of the first n slippery numbers.
-# slippery_numbers(7) => [3, 5, 6, 9, 10, 12, 18]
-def slippery_numbers(n)
-	lst = []
-	i = 1
-	while lst.length < n
-		lst << i if is_slippery?(i)
-		i = i + 1
-	end
-	return lst
+# Define a method, boolean_to_binary(arr), that accepts an array of booleans as an argument. Your method should convert the array into a string of 1's (for true values) and 0's (for false values) and return the result.
+# boolean_to_binary([true]) => "1"
+# boolean_to_binary([true, false, true]) => "101"
+def boolean_to_binary(arr)
+  result = ''
+  i = 0
+  while i < arr.length
+    result << '1' if arr[i]
+    result << '0' if !arr[i]
+    i += 1
+  end
+  return result
 end
 
-# Define a method, #e_words(str), that accepts a string as an argument. 
-#Your method return the number of words in the string that end with the letter "e".
-# e_words("tree") => 1
-# e_words("Let be be finale of seem.") => 3
-def e_words(str)
-	count = 0
-	str.delete('.').split.each do |word|
-		count += 1 if word[-1] =='e'
-	end
-	return count
+# Define a method that returns the third-largest element in an array. 
+# Assume the argument has at least three elements.
+# third_greatest([5, 9, 3, 7, 7, 2, 10]) == 7
+def third_largest(arr)
+  arr.sort[-3]
 end
 
-# The Fibonacci Sequence follows a simple rule: 
-# the next number in the sequence is the sum of the previous two. 
-# The sequence begins with [0, 1]. One computes the third number by summing the first and  second (0 + 1 == 1)
-# ,yielding [0, 1, 1], one computes the fourth number by summing the second and the third, 
-# yielding [0, 1, 1, 2], and so on.
-# Define a method, #fibs, that accepts an integer as an argument. 
-# The method should return an array of the first n Fibonacci numbers.
-
-# fibs(1) => [0]
-# fibs(6) => [0, 1, 1, 2, 3, 5]
-
-def fibs(n)
-	ls = [0,1]
-	return [0] if n == 1
-	return [0,1] if n == 2
-	while ls.length < n
-		ls<< (ls[ls.length-2]+ls[ls.length-1])
-	end
-	return ls
+# Define a method that takes a number of minutes as its argument and returns a string formatted HH:MM. Assume the number of hours is always less than 99.
+# time_conversion(90) => "01:30"
+# time_conversion(0) => "00:00"
+def time_conversion(mins)
+  hour = mins/60
+  min = mins.modulo(60)
+  return '%02d:%02d' %[hour,min]
 end
+
 
 $success_count = 0
 $failure_count = 0
@@ -133,18 +124,19 @@ def print_test(method_name, args, expectation)
     $failure_count += 1
 end
 
-puts "\nis_slippery?:\n" + "*" * 15 + "\n"
-test_is_slippery?(6, true)
-test_is_slippery?(30, false)
-puts "\nslipper_numbers:\n" + "*" * 15 + "\n"
-test_slippery_numbers(2, [3, 5])
-test_slippery_numbers(0, [])
-puts "\ne_words:\n" + "*" * 15 + "\n"
-test_e_words("loom", 0)
-test_e_words("To be or not to be", 2)
-puts "\nfibs:\n" + "*" * 15 + "\n"
-test_fibs(2, [0,1])
-test_fibs(6, [0,1,1,2,3,5])
+puts "\npalindrome?:\n" + "*" * 15 + "\n"
+test_palindrome?("evitative", true)
+test_palindrome?("revolver", false)
+puts "\nboolean_to_binary:\n" + "*" * 15 + "\n"
+test_boolean_to_binary([false], "0")
+test_boolean_to_binary([false, true, false], "010")
+puts "\nthird_largest:\n" + "*" * 15 + "\n"
+test_third_largest([5, 9, 3, 7, 7, 2, 10], 7)
+test_third_largest([0,0,0], 0)
+puts "\ntime_conversion:\n" + "*" * 15 + "\n"
+test_time_conversion(90, "01:30")
+test_time_conversion(0, "00:00")
+
 puts
 puts "TOTAL CORRECT: #{$success_count} / #{$success_count + $failure_count}"
 puts "TOTAL FAILURES: #{$failure_count}"

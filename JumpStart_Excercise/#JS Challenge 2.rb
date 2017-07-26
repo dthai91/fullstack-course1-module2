@@ -1,56 +1,61 @@
-#JS Challenge 1
-
-
-# A "slippery number" has 3 as a factor or has 5 as a factor, but not both. 6 is a slippery, but 30 is not. Define a method that returns a boolean indicating whether its argument is slippery.
-def is_slippery?(n)
-	(n.modulo(3) == 0 || n.modulo(5)==0) && (n.modulo(15)!=0)
-end
-
-# Write a method that, given an integer n, returns an array of the first n slippery numbers.
-# slippery_numbers(7) => [3, 5, 6, 9, 10, 12, 18]
-def slippery_numbers(n)
-	lst = []
-	i = 1
-	while lst.length < n
-		lst << i if is_slippery?(i)
-		i = i + 1
+#JS Challenge 2
+# Define a method that returns the sum of all the non-negative integers up to and including its argument.
+# sum_to(3) => 6
+def sum_to(int)
+	sum = 0
+	i = 0
+	while i <= int
+		sum += i
+		i += 1
 	end
-	return lst
+	return sum 
 end
 
-# Define a method, #e_words(str), that accepts a string as an argument. 
-#Your method return the number of words in the string that end with the letter "e".
-# e_words("tree") => 1
-# e_words("Let be be finale of seem.") => 3
-def e_words(str)
-	count = 0
-	str.delete('.').split.each do |word|
-		count += 1 if word[-1] =='e'
-	end
-	return count
+# A magic number is a number whose digits, when added together, sum to 7, e.g., 34. Define a method that returns an array of the first n magic numbers. You may wish to write a helper method that returns a boolean indicating whether a number is magic.
+# magic_numbers(3) => [7, 16, 25]
+def magic_number?(n)
+	n.to_s.split('').each.map{|char| char.to_i}.reduce(:+) == 7
 end
 
-# The Fibonacci Sequence follows a simple rule: 
-# the next number in the sequence is the sum of the previous two. 
-# The sequence begins with [0, 1]. One computes the third number by summing the first and  second (0 + 1 == 1)
-# ,yielding [0, 1, 1], one computes the fourth number by summing the second and the third, 
-# yielding [0, 1, 1, 2], and so on.
-# Define a method, #fibs, that accepts an integer as an argument. 
-# The method should return an array of the first n Fibonacci numbers.
-
-# fibs(1) => [0]
-# fibs(6) => [0, 1, 1, 2, 3, 5]
-
-def fibs(n)
-	ls = [0,1]
-	return [0] if n == 1
-	return [0,1] if n == 2
+def magic_numbers(n)
+	ls = []
+	return ls if n == 0
+	i = 0
 	while ls.length < n
-		ls<< (ls[ls.length-2]+ls[ls.length-1])
+		ls << i if magic_number?(i)
+		i = i + 1
 	end
 	return ls
 end
 
+# Define a method that given an array, 
+# returns another array of only the unique elements from the first. 
+# Do not use the built-in uniq method.
+
+# uniq([5, 5, 5, 5]) => [5]
+# uniq([1, 2, 1, 3, 3]) => [1, 2, 3]
+def uniq(arr)
+	ls = []
+	arr.each do |x|
+		ls << x if !(ls.include?(x))
+	end
+	return ls
+end
+
+# Define a method that receives two arrays as arguments and 
+# returns a new array of arguments unique among both arrays 
+# (but not necessarily within the array it occurs). 
+# Maintain original (intra- and inter-array) order.
+
+# all_uniqs([1, 1, 3, 6], [2, 3, 6]) => [1, 2]
+# all_uniqs([1, 2, 3], [1, 2, 3]) => []
+def all_uniqs(arr1, arr2)
+	ls = []
+	(arr1 | arr2).each do |x|
+		ls << x if ((arr1.include?(x)&& !arr2.include?(x)) || (arr2.include?(x)&& !arr1.include?(x)))
+	end
+	return ls
+end
 $success_count = 0
 $failure_count = 0
 
@@ -133,18 +138,18 @@ def print_test(method_name, args, expectation)
     $failure_count += 1
 end
 
-puts "\nis_slippery?:\n" + "*" * 15 + "\n"
-test_is_slippery?(6, true)
-test_is_slippery?(30, false)
-puts "\nslipper_numbers:\n" + "*" * 15 + "\n"
-test_slippery_numbers(2, [3, 5])
-test_slippery_numbers(0, [])
-puts "\ne_words:\n" + "*" * 15 + "\n"
-test_e_words("loom", 0)
-test_e_words("To be or not to be", 2)
-puts "\nfibs:\n" + "*" * 15 + "\n"
-test_fibs(2, [0,1])
-test_fibs(6, [0,1,1,2,3,5])
+puts "\nsum_to:\n" + "*" * 15 + "\n"
+test_sum_to(3, 6)
+test_sum_to(0, 0)
+puts "\nmagic_numbers:\n" + "*" * 15 + "\n"
+test_magic_numbers(3, [7, 16, 25])
+test_magic_numbers(0, [])
+puts "\nuniq:\n" + "*" * 15 + "\n"
+test_uniq([1, 2, 1, 3, 3], [1,2,3])
+test_uniq([], [])
+puts "\nall_uniqs:\n" + "*" * 15 + "\n"
+test_all_uniqs([1,3,6], [2,3,6], [1,2])
+test_all_uniqs([1,2,3], [1,2,3], [])
 puts
 puts "TOTAL CORRECT: #{$success_count} / #{$success_count + $failure_count}"
 puts "TOTAL FAILURES: #{$failure_count}"

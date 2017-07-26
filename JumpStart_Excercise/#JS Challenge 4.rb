@@ -1,48 +1,43 @@
-# EASY
-
-# Write a method that returns a boolean indicating whether an array is
-# in sorted order. Use the equality operator (==), which returns a boolean 
-# indicating whether its operands are equal, 
-# e.g., 2 == 2 => true, ["cat", "dog"] == ["dog", "cat"] => false
-def in_order?(arr)
-  # your code goes here
-  return arr == arr.sort
+# Define a method that, given an array of numbers, 
+# returns another array with each of the argument's numbers multiplied by two. 
+# Do not modify the original array.
+def array_times_two(arr)
+  arr.map{|x| x*2}
+  # arr2 = []
+  # arr.each do |x|
+  #   arr2 << x*2
+  # end
+  # return arr2
 end
 
-
-# MEDIUM
-
-# Write a method that returns the range of its argument (an array of integers).
-def range(arr)
-  # your code goes here
-  return arr.max - arr.min
+# Define a method that, given an array of numbers, mulitplies each of its elemnets by two. 
+# This SHOULD mutate the original array!
+def array_times_two!(arr)
+  arr.map!{|x| x*2}
 end
 
-
-# HARD 
-
-# Write a method that returns an array of the digits of a non-negative integer in descending order and as strings, e.g., descending_digits(4291) #=> ["9", "4", "2", "1"]
-def descending_digits(int)
-  # your code goes here
-  return int.to_s.split('').sort.reverse
+# Define a method that substitutes all five-letter words in its argument with "#####" and returns the result. 
+# Do not consider punctuation.
+# redact_five_letter_words("long longer longest longy") => "long longer longest #####"
+def redact_five_letter_words(str)
+  str_new = []
+  str.split.each do |word|
+  if word.length == 5
+    str_new << '#####'
+  else
+    str_new << word
+  end
+end
+str_new.join(' ')
 end
 
-# Write a method that converts an array of ten integers into a phone number in the format "(123) 456-7890".
-def to_phone_number(arr)
-  # your code goes here
-  arr = arr.join
-  p "(" + arr[0..2].to_s + ") " + arr[3..5].to_s + "-" + arr[6..9].to_s
+# Define a method that takes an array of pairs (two-element arrays) and returns the pair with the greatest sum.
+# largest_pair([[-4,0],[-2,-1],[-3,2]]) => [-3,2]
+# largest_pair([[1,0]]) => [1,0]
+def largest_pair(pairs_array)
+  sum = pairs_array.each.map{|pair| pair.reduce(:+)}
+  return pairs_array[sum.find_index(sum.max)]
 end
-
-# Write a method that returns the range of a string of comma-separated integers, e.g., str_range("4,1,8") #=> 7
-def str_range(str)
-  # your code goes here
-  str = str.split(',').map{|num| num.to_i}
-  return str.max-str.min
-end
-
-
-# DO NOT MODIFY CODE BELOW
 
 $success_count = 0
 $failure_count = 0
@@ -65,7 +60,7 @@ def format_args(args)
   o_args = deep_dup(args)
   o_args.map! do |arg|
     arg = prettify(arg)
-    arg.class == Array ? arg.to_s : arg  
+    arg.class == Array ? arg.to_s : arg
   end
   o_args.join(', ')
 end
@@ -126,21 +121,20 @@ def print_test(method_name, args, expectation)
     $failure_count += 1
 end
 
-puts "\nin_order?:\n" + "*" * 15 + "\n"
-test_in_order?(["a", "z", "c"], false)
-test_in_order?([0, 1, 2], true)
-puts "\nrange:\n" + "*" * 15 + "\n"
-test_range([-1, 5, 0], 6)
-test_range([0, 0], 0)
-puts "\ndescending_digits:\n" + "*" * 15 + "\n"
-test_descending_digits(4291, ["9", "4", "2", "1"])
-test_descending_digits(0, ["0"])
-puts "\nto_phone_number:\n" + "*" * 15 + "\n"
-test_to_phone_number([1,2,3,4,5,6,7,8,9,0], "(123) 456-7890")
-puts "\nstr_range:\n" + "*" * 15 + "\n"
-test_str_range("4,1,8", 7)
-test_str_range("0,0", 0)
-puts "\n"
+puts "\narray_times_two:\n" + "*" * 15 + "\n"
+test_array_times_two([1,2,3].freeze, [2,4,6])
+test_array_times_two([].freeze, [])
+puts "\narray_times_two!:\n" + "*" * 15 + "\n"
+test_array_times_two!([1,2,3], [2,4,6])
+test_array_times_two!([], [])
+puts "\nredact_five_letter_words:\n" + "*" * 15 + "\n"
+test_redact_five_letter_words("long longer longest longy", "long longer longest #####")
+test_redact_five_letter_words("Full fathom five thy father lies;/ Of his bones are coral made", "Full fathom five thy father lies;/ Of his ##### are ##### made")
+puts "\nlargest_pair:\n" + "*" * 15 + "\n"
+test_largest_pair([[1,0]], [1,0])
+test_largest_pair([[-4,0],[-2,-1],[-3,2]], [-3,2])
+
+puts
 puts "TOTAL CORRECT: #{$success_count} / #{$success_count + $failure_count}"
 puts "TOTAL FAILURES: #{$failure_count}"
 $success_count = 0

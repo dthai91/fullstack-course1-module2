@@ -1,54 +1,30 @@
-#JS Challenge 1
-
-
-# A "slippery number" has 3 as a factor or has 5 as a factor, but not both. 6 is a slippery, but 30 is not. Define a method that returns a boolean indicating whether its argument is slippery.
-def is_slippery?(n)
-	(n.modulo(3) == 0 || n.modulo(5)==0) && (n.modulo(15)!=0)
+# Define a method that capitalizes each word of its argument and returns the resulting string.
+def capitalize_each_word(str)
+  str.split.each{|word| word.capitalize!}.join(' ')
 end
 
-# Write a method that, given an integer n, returns an array of the first n slippery numbers.
-# slippery_numbers(7) => [3, 5, 6, 9, 10, 12, 18]
-def slippery_numbers(n)
-	lst = []
-	i = 1
-	while lst.length < n
-		lst << i if is_slippery?(i)
-		i = i + 1
-	end
-	return lst
+# Define a method that takes an array of integers and returns an array of the square of each.
+# compute_squares([1, 2, 3, 4]) => [1, 4, 9, 16]
+# compute_squares([]) => []
+def compute_squares(arr)
+  arr.each.map{|x| x**2 }
 end
 
-# Define a method, #e_words(str), that accepts a string as an argument. 
-#Your method return the number of words in the string that end with the letter "e".
-# e_words("tree") => 1
-# e_words("Let be be finale of seem.") => 3
-def e_words(str)
-	count = 0
-	str.delete('.').split.each do |word|
-		count += 1 if word[-1] =='e'
-	end
-	return count
+# Define a method that returns a boolean indicating whether any two elements in the argument array sum to 0.
+# two_sum_to_zero?([4, 2, 6]) => false
+# two_sum_to_zero?([-2, 5, 12, -3, 2]) => true
+def two_sum_to_zero?(arr)
+  arr.combination(2).map{|pair| pair.reduce(:+)}.include?(0)
 end
 
-# The Fibonacci Sequence follows a simple rule: 
-# the next number in the sequence is the sum of the previous two. 
-# The sequence begins with [0, 1]. One computes the third number by summing the first and  second (0 + 1 == 1)
-# ,yielding [0, 1, 1], one computes the fourth number by summing the second and the third, 
-# yielding [0, 1, 1, 2], and so on.
-# Define a method, #fibs, that accepts an integer as an argument. 
-# The method should return an array of the first n Fibonacci numbers.
-
-# fibs(1) => [0]
-# fibs(6) => [0, 1, 1, 2, 3, 5]
-
-def fibs(n)
-	ls = [0,1]
-	return [0] if n == 1
-	return [0,1] if n == 2
-	while ls.length < n
-		ls<< (ls[ls.length-2]+ls[ls.length-1])
-	end
-	return ls
+# Define a method that returns the longest word in its argument.
+def longest_word(str)
+  lst = str.gsub(/[[:punct:]]/, '').split
+  num = []
+  lst.each do |word|
+    num << word.length
+  end
+  lst[num.find_index(num.max)]
 end
 
 $success_count = 0
@@ -133,18 +109,19 @@ def print_test(method_name, args, expectation)
     $failure_count += 1
 end
 
-puts "\nis_slippery?:\n" + "*" * 15 + "\n"
-test_is_slippery?(6, true)
-test_is_slippery?(30, false)
-puts "\nslipper_numbers:\n" + "*" * 15 + "\n"
-test_slippery_numbers(2, [3, 5])
-test_slippery_numbers(0, [])
-puts "\ne_words:\n" + "*" * 15 + "\n"
-test_e_words("loom", 0)
-test_e_words("To be or not to be", 2)
-puts "\nfibs:\n" + "*" * 15 + "\n"
-test_fibs(2, [0,1])
-test_fibs(6, [0,1,1,2,3,5])
+puts "\ncapitalize_each_word:\n" + "*" * 15 + "\n"
+test_capitalize_each_word("capitalistic capital is a capital offense!", "Capitalistic Capital Is A Capital Offense!")
+test_capitalize_each_word("", "")
+puts "\ncompute_squares:\n" + "*" * 15 + "\n"
+test_compute_squares([1,2,3,4], [1,4,9,16])
+test_compute_squares([], [])
+puts "\ntwo_sum_to_zero?:\n" + "*" * 15 + "\n"
+test_two_sum_to_zero?([4,2,6,0], false)
+test_two_sum_to_zero?([-2,5,12,-3,2], true)
+puts "\nlongest_word:\n" + "*" * 15 + "\n"
+test_longest_word("Capital is reckless of the health or length of life of the laborer, unless under compulsion from society.", "compulsion")
+test_longest_word("Enlightened statesmen will not always be at the helm.", "Enlightened")
+
 puts
 puts "TOTAL CORRECT: #{$success_count} / #{$success_count + $failure_count}"
 puts "TOTAL FAILURES: #{$failure_count}"
