@@ -476,26 +476,7 @@ arr = ['a', 'b', 'c', 'd', 'e', 'f']
 # puts every_other_letter("abcde") == "ace"
 # puts every_other_letter("i heart ruby") == "ihatrb"
 # puts every_other_letter("an apple a day...") == "a pl  a.."
-# def the(a)
-# 					'a good ' + a
-# 				end
-# puts "now is #{the ''} for all good coders..."
-word = 'abcdefgh'
-p word.reverse.index('c')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+def the(a)
+					'a good ' + a
+				end
+puts "now is #{the ''} for all good coders..."
