@@ -1,0 +1,8 @@
+#To-Do List
+
+
+Learn Terminal, Git and Text Editor in Mac
+
+https://www.learnenough.com/git-tutorial#sec-viewing_the_diff
+https://www.learnenough.com/command-line-tutorial#sec-manipulating_files
+https://www.learnenough.com/text-editor-tutorial
