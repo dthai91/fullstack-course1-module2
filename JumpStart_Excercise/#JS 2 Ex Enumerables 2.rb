@@ -91,7 +91,9 @@ def c_distance(word)
 end
 
 
-# Define a method that, given an array of numbers, returns a nested array of two-element arrays that each contain the start and end indices of whenever a number appears multiple times in a row.
+# Define a method that, given an array of numbers, 
+# returns a nested array of two-element arrays 
+# that each contain the start and end indices of whenever a number appears multiple times in a row.
 # repeated_number_ranges([1, 1, 2]) => [[0, 1]]
 # repeated_number_ranges([1, 2, 3, 3, 4, 4, 4]) => [[2, 3], [4, 6]]
 def repeated_number_ranges(arr)

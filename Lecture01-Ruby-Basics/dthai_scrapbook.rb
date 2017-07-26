@@ -57,6 +57,152 @@
 # #   puts "my argument is #{idx}"
 # #   puts traversed_thrice_is_all_right[idx]
 # # end #=> [1, 2, 3]
+arr = ['a', 'b', 'c', 'd', 'e', 'f']
+# # p arr.take(3)
+# # p arr.drop(2)
+
+# # def my_rotate(arr, offset=1)
+# #   p arr.drop(offset) + arr.take(offset)
+# # end
+
+# # p 'doGgIE'.split('').delete_if{|char| char == char.upcase}.join
+
+
+
+
+# # vowels = ['a','e','i','o','u']
+# # count = 0
+# # p 'Aruba'.downcase.each_char.map{|ch| count = count + 1 if vowels.include?(ch)}
+# # p count
+
+# # ls = ''
+# # ["k", "i", "t", "t", "y"].each do |x|
+# # 	ls = ls + x
+# # end
+# # # p ls
+
+# # arr = "Looks like my luck has reversed"
+# # ls = ''
+# # i = -1
+# # while i > -arr.length
+# # 	ls += arr[i]
+# # 	i -= 1
+# # end
+
+
+# # num = 125
+# # for i in (1..Math.sqrt(num).to_i)
+# # 	if num % i == 0
+# # 		return true
+# # 	else
+# # 		return false
+# # end
+
+
+# # def factors(num)
+# #   # your code goes here
+# #   ls = []
+# #   i = 1
+# #   while i < num+1
+# #     if num % i == 0
+# #       ls << i
+# #     end
+# #   	i = i + 1
+# #   end
+# #   return ls
+# # end
+
+# # p ls = factors(54)
+# # count = 0
+
+# # arr = ["hello", "bye", "greetings"]
+# # tgt = 'byebye'
+# # arr_target = []
+# # i = 0
+# # while i < arr.length
+# # 	j = i + 1
+# # 	while j < arr.length
+# # 		arr_target << arr[i]+arr[j]
+# # 		arr_target << arr[j]+arr[i]
+# # 		j += 1
+# # 	end
+# # 	i = i + 1
+# # end
+# # p arr_target#.include?(tgt)
+
+
+
+
+# # def prime?(num)
+# # 	return false if num == 1
+# #   (2..num/2).none?{|i| num % i == 0}
+# # end
+
+# # # Write a method that returns a sorted array of the factors of its argument.
+# # def factors(num)
+# #   # your code goes here
+# #   ls = []
+# #   i = 1
+# #   while i < num+1
+# #     if num % i == 0
+# #       ls << i
+# #     end
+# #     i = i + 1
+# #   end
+# #   return ls
+# # end
+
+# # p prime?(24)
+
+# # ls = factors(54)
+# # ls_new = []
+
+# # ls.each do |x|
+# # 	ls_new << x if prime?(x)
+# # end
+
+# # p ls_new
+
+# # #prime_factors(54): expected [2, 3]
+
+# # # Write a method that returns a sorted array of the prime factors of its argument.
+# # def prime_factors(num)
+# #   # your code goes here
+# #   ls = factors(num)
+# # end
+
+
+
+# p 'dolla ' * 5
+
+# # def compound_words?(array, target)
+# #   # your code here
+# #   array.combination(2).each{|x,y| }
+# # end
+
+# # arr = ["dolla", "dolla", "dolla","dolla"]
+# # sep = "-"
+# # p arr.length
+# # p arr[0]
+# # p arr[0] + sep + arr[1] + sep + arr[2] + sep + arr[3]
+# # # Write your own version of the join method. separator="" ensures that the default argument is "".
+# def my_join(arr, separator="")
+#   # your code goes here
+#   i = 0 
+#   result = ""
+#   while i < arr.length
+#   	if i == arr.length - 1
+#   		result = result + arr[i]
+#   	else
+#   		result = result + arr[i] + separator
+#   	end
+#   	i = i + 1
+#   end
+#   return result
+# end
+
+# p my_join(["k", "i", "t", "t", "y"])
+# p my_join(["dolla", "dolla"], "$")#, "dolla$dolla")
 
 # "To strive, to seek, to find, and not to yield.".each_char do |ch|
 #     puts "Who's talking about yield?"
@@ -290,12 +436,44 @@
 # p tbl.select{|char| !string.include?(char)}
 
 
-str = "r is among the most menacing of sounds. That's why they call it murder and not muckduck."
-str = str.delete("'.").split.select{|char| char.include?('c')}
-ls = str.each.map{|word| word.split("").reverse.find_index('c')}
-p str[ls.find_index(ls.min)]
+# str = "r is among the most menacing of sounds. That's why they call it murder and not muckduck."
+# str = str.delete("'.").split.select{|char| char.include?('c')}
+# ls = str.each.map{|word| word.split("").reverse.find_index('c')}
+# p str[ls.find_index(ls.min)]
 
 
-def c_distance(word)
-	word.split("").reverse.find_index('c')
-end
+# def c_distance(word)
+# 	word.split("").reverse.find_index('c')
+# end
+# ls1 = []
+# l1 = [1,2,3,4]
+# a1 = "1234"
+# #p a1.chars.map {|char| ls1 << char.to_i * 2}
+# p l1.each
+
+
+
+# puts '___'
+
+
+# ls = []
+# p "1234".each_char {|char| ls << char.to_i*2}
+# p ls
+# def every_other_letter(string)
+#   	# your code here
+#   	new_w = ''
+# 	string.split('').each_with_index do |c, idx|
+# 		new_w << c if idx % 2 == 0
+# 	end
+# 	return new_w
+# end
+# new_w = ''
+# "an apple a day...".split('').each_with_index do |c, idx|
+# 	new_w << c if idx % 2 == 0
+# end
+# p new_w
+
+# puts "------Every Other Letter------"
+# puts every_other_letter("abcde") == "ace"
+# puts every_other_letter("i heart ruby") == "ihatrb"
+# puts every_other_letter("an apple a day...") == "a pl  a.."
